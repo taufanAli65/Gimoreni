@@ -7,6 +7,7 @@ import { LoginPage } from '../domains/auth/pages/LoginPage';
 import { UsersPage } from '../pages/admin/UsersPage';
 import { MiscPage } from '../pages/admin/MiscPage';
 import { AddPage } from '../pages/user/AddPage';
+import { SettingsPage } from '../pages/user/SettingsPage';
 import { CalendarPage } from '../pages/admin/CalendarPage';
 import { HomePage } from '../pages/user/HomePage';
 import { QuestsPage } from '../pages/admin/QuestsPage';
@@ -18,7 +19,7 @@ export const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        
+
         {/* Admin Routes */}
         <Route element={<AdminRoutes />}>
           <Route path="/admin" element={<AdminLayout />}>
@@ -36,7 +37,7 @@ export const AppRouter = () => {
           <Route path="/" element={<UserLayout />}>
             <Route index element={<HomePage />} />
             <Route path="add" element={<AddPage />} />
-            {/* More user routes here */}
+            <Route path="settings" element={<SettingsPage />} />
           </Route>
         </Route>
 

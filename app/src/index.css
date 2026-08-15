@@ -20,3 +20,23 @@ body {
   color: var(--foreground);
   font-family: var(--font-family-sans);
 }
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Ensure max-width for mobile layout */
+.max-w-md {
+  max-width: 448px;
+}

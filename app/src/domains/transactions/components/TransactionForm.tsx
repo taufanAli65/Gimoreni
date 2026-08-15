@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 export const TransactionForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const { data: categories = [], isLoading: loadingCategories } = useCategories();
   const { createMutation } = useTransactionMutations();
-  
+
   const [type, setType] = useState<'INCOME' | 'EXPENSE'>('EXPENSE');
   const [amount, setAmount] = useState('');
   const [categoryId, setCategoryId] = useState('');
@@ -17,12 +17,12 @@ export const TransactionForm = ({ onSuccess }: { onSuccess?: () => void }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!categoryId) {
       toast.error('Please select a category');
       return;
     }
-    
+
     if (!amount || Number(amount) <= 0) {
       toast.error('Please enter a valid amount');
       return;
@@ -60,22 +60,20 @@ export const TransactionForm = ({ onSuccess }: { onSuccess?: () => void }) => {
         <button
           type="button"
           onClick={() => setType('EXPENSE')}
-          className={`px-4 py-2 text-sm font-medium border rounded-l-lg flex-1 ${
-            type === 'EXPENSE' 
-              ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]' 
+          className={`px-4 py-2 text-sm font-medium border rounded-l-lg flex-1 ${type === 'EXPENSE'
+              ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
               : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
-          }`}
+            }`}
         >
           Expense
         </button>
         <button
           type="button"
           onClick={() => setType('INCOME')}
-          className={`px-4 py-2 text-sm font-medium border-t border-b border-r rounded-r-lg flex-1 ${
-            type === 'INCOME' 
-              ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]' 
+          className={`px-4 py-2 text-sm font-medium border-t border-b border-r rounded-r-lg flex-1 ${type === 'INCOME'
+              ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
               : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
-          }`}
+            }`}
         >
           Income
         </button>
