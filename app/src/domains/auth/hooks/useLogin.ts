@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../shared/lib/axios';
 import { useAuth } from '../../../shared/hooks/useAuth';
-import { AuthResponse } from '../types';
+import type { AuthResponse } from '../types';
 import { toast } from 'sonner';
 
 interface LoginPayload {

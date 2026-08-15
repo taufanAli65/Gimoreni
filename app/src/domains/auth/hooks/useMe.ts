@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { api, setAccessToken } from '../../../shared/lib/axios';
-import { User } from '../types';
+import type { User } from '../types';
 
 export const useMe = (enabled = true) => {
   return useQuery({

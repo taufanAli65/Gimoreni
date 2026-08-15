@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode, useEffect } from 'react';
-import { User } from '../../domains/auth/types';
+import { createContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import type { User } from '../../domains/auth/types';
 import { setAccessToken } from '../lib/axios';
 
 interface AuthContextType {
