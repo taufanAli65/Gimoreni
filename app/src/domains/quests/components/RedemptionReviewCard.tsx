@@ -38,44 +38,44 @@ export const RedemptionReviewCard = ({ redemption }: RedemptionReviewCardProps) 
             {format(new Date(redemption.createdAt), 'PPpp')}
           </p>
         </div>
-        <div className="text-forest-green font-bold bg-moss-green/10 px-3 py-1 rounded-full">
-          +{redemption.quest?.pointReward} pts
+          <div className="text-forest font-bold bg-moss-green/10 px-3 py-1 rounded-full">
+            +{redemption.quest?.pointReward} pts
+          </div>
         </div>
-      </div>
 
-      {redemption.proofNote && (
-        <div className="mb-4 bg-gray-50 p-3 rounded-md text-sm text-gray-700">
-          <span className="font-semibold">Note:</span> {redemption.proofNote}
-        </div>
-      )}
+        {redemption.proofNote && (
+          <div className="mb-4 bg-gray-50 p-3 rounded-md text-sm text-gray-700">
+            <span className="font-semibold">Note:</span> {redemption.proofNote}
+          </div>
+        )}
 
-      {redemption.proofUrl && (
-        <div className="mb-4">
-          <p className="text-sm font-semibold mb-2">Proof Image:</p>
-          <a href={redemption.proofUrl} target="_blank" rel="noopener noreferrer">
-            <img 
-              src={redemption.proofUrl} 
-              alt="Proof" 
-              className="max-h-64 rounded-md object-contain border border-gray-200 cursor-pointer hover:opacity-90"
-            />
-          </a>
-        </div>
-      )}
+        {redemption.proofUrl && (
+          <div className="mb-4">
+            <p className="text-sm font-semibold mb-2">Proof Image:</p>
+            <a href={redemption.proofUrl} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={redemption.proofUrl} 
+                alt="Proof" 
+                className="max-h-64 rounded-md object-contain border border-gray-200 cursor-pointer hover:opacity-90"
+              />
+            </a>
+          </div>
+        )}
 
-      {redemption.status === 'PENDING' && !isRejecting && (
-        <div className="flex gap-2 justify-end mt-4 pt-4 border-t border-gray-100">
-          <button
-            onClick={() => setIsRejecting(true)}
-            className="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none"
-            disabled={approveRedemption.isPending}
-          >
-            Reject...
-          </button>
-          <button
-            onClick={handleApprove}
-            className="px-4 py-2 text-sm font-medium text-white bg-forest-green rounded-md hover:bg-forest-green/90 focus:outline-none disabled:opacity-50"
-            disabled={approveRedemption.isPending}
-          >
+        {redemption.status === 'PENDING' && !isRejecting && (
+          <div className="flex gap-2 justify-end mt-4 pt-4 border-t border-gray-100">
+            <button
+              onClick={() => setIsRejecting(true)}
+              className="px-4 py-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none"
+              disabled={approveRedemption.isPending}
+            >
+              Reject...
+            </button>
+            <button
+              onClick={handleApprove}
+              className="px-4 py-2 text-sm font-medium text-white bg-forest rounded-md hover:bg-forest/90 focus:outline-none disabled:opacity-50"
+              disabled={approveRedemption.isPending}
+            >
             {approveRedemption.isPending ? 'Approving...' : 'Approve & Award Points'}
           </button>
         </div>

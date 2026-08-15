@@ -1,166 +1,170 @@
 import { useState } from 'react';
-import { useTransactionSummary } from '../../domains/transactions/hooks/useTransactionSummary';
+import { PageHeader } from '../../shared/components/PageHeader';
+import { useGetUsers } from '../../domains/users/hooks/useUsers';
 import { useTransactionCalendar } from '../../domains/transactions/hooks/useTransactionCalendar';
+import { useTransactions } from '../../domains/transactions/hooks/useTransactions';
+import { startOfMonth, endOfMonth, getDaysInMonth, format, getDay, addDays } from 'date-fns';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 export const CalendarPage = () => {
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [selectedUserId, setSelectedUserId] = useState<string | undefined>(undefined);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedUserId, setSelectedUserId] = useState<string>('');
+  const [selectedDay, setSelectedDay] = useState<Date | null>(null);
 
-  const { data: summaryData, isLoading: loadingSummary } = useTransactionSummary(month, year);
-  const { data: calendarDates, isLoading: loadingCalendar } = useTransactionCalendar(selectedUserId, month, year);
+  const month = currentDate.getMonth() + 1;
+  const year = currentDate.getFullYear();
 
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
-    const day = i + 1;
-    // Format YYYY-MM-DD
-    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const { data: usersData } = useGetUsers(1, 100);
+  const { data: calendarDates } = useTransactionCalendar(
+    selectedUserId || undefined,
+    month,
+    year
+  );
+
+  const { data: dayTransactionsData, isLoading: loadingDayTransactions } = useTransactions({
+    userId: selectedUserId || undefined,
+    startDate: selectedDay ? selectedDay.toISOString() : undefined,
+    endDate: selectedDay ? selectedDay.toISOString() : undefined,
   });
 
+  const nextMonth = () => setCurrentDate(addDays(endOfMonth(currentDate), 1));
+  const prevMonth = () => setCurrentDate(addDays(startOfMonth(currentDate), -1));
+
+  const daysInMonth = getDaysInMonth(currentDate);
+  const firstDayOfMonth = getDay(startOfMonth(currentDate));
+
+  const daysArray = Array.from({ length: daysInMonth }, (_, i) => {
+    const day = i + 1;
+    return new Date(year, month - 1, day);
+  });
+
+  const paddingDays = Array.from({ length: firstDayOfMonth }, (_, i) => i);
+
   return (
-    <div className="max-w-6xl mx-auto space-y-8 pb-12">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">Transaction Dashboard</h1>
-          <p className="text-sm text-gray-500">Monitor user activity and financial summaries</p>
+    <div className="space-y-8 pb-12 relative">
+      <PageHeader
+        title="Transaction Calendar"
+        subtitle="View logged transactions by day."
+        actions={
+          <div className="flex items-center gap-4">
+            <select
+              value={selectedUserId}
+              onChange={(e) => setSelectedUserId(e.target.value)}
+              className="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-forest focus:border-forest block w-full p-2.5"
+            >
+              <option value="">All Users</option>
+              {usersData?.data.map((user: any) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        }
+      />
+
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        {/* Calendar Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900">
+            {format(currentDate, 'MMMM yyyy')}
+          </h2>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={prevMonth}
+              className="p-2 rounded-md hover:bg-gray-100 text-gray-600 transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={nextMonth}
+              className="p-2 rounded-md hover:bg-gray-100 text-gray-600 transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 border-b border-gray-200 bg-gray-50">
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+            <div key={day} className="py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+              {day}
+            </div>
+          ))}
         </div>
         
-        <div className="flex gap-4">
-          <select
-            value={month}
-            onChange={(e) => setMonth(Number(e.target.value))}
-            className="rounded-md border border-gray-300 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#52B788]"
-          >
-            {Array.from({ length: 12 }, (_, i) => (
-              <option key={i + 1} value={i + 1}>
-                {new Date(0, i).toLocaleString('default', { month: 'long' })}
-              </option>
-            ))}
-          </select>
-          <input 
-            type="number" 
-            value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
-            className="w-24 rounded-md border border-gray-300 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#52B788]"
-          />
-        </div>
-      </div>
+        <div className="grid grid-cols-7 auto-rows-[120px] bg-gray-200 gap-[1px]">
+          {paddingDays.map((_, index) => (
+            <div key={`padding-${index}`} className="bg-gray-50/50" />
+          ))}
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="col-span-1 lg:col-span-2 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">User Monthly Summary</h2>
-          {loadingSummary ? (
-            <div className="text-center py-4 text-gray-500">Loading summary...</div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="py-2 font-medium text-gray-600">User</th>
-                    <th className="py-2 font-medium text-gray-600">Income</th>
-                    <th className="py-2 font-medium text-gray-600">Expense</th>
-                    <th className="py-2 font-medium text-gray-600">Missed Days</th>
-                    <th className="py-2"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {summaryData?.map(row => (
-                    <tr key={row.userId} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 text-sm font-medium">{row.userName}</td>
-                      <td className="py-3 text-sm text-[#52B788]">
-                        Rp {row.totalIncome.toLocaleString('id-ID')}
-                      </td>
-                      <td className="py-3 text-sm text-red-500">
-                        Rp {row.totalExpense.toLocaleString('id-ID')}
-                      </td>
-                      <td className="py-3 text-sm">{row.missedDays}</td>
-                      <td className="py-3 text-sm text-right">
-                        <button 
-                          onClick={() => setSelectedUserId(row.userId)}
-                          className={`text-xs px-2 py-1 rounded ${
-                            selectedUserId === row.userId 
-                              ? 'bg-[#2D6A4F] text-white' 
-                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                          }`}
-                        >
-                          View Calendar
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                  {summaryData?.length === 0 && (
-                    <tr>
-                      <td colSpan={5} className="py-4 text-center text-gray-500">
-                        No users found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+          {daysArray.map((date) => {
+            const dateStr = format(date, 'yyyy-MM-dd');
+            const isActive = calendarDates?.includes(dateStr);
+            const isToday = format(new Date(), 'yyyy-MM-dd') === dateStr;
 
-        <div className="col-span-1 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Activity Calendar</h2>
-            {selectedUserId && (
-              <button 
-                onClick={() => setSelectedUserId(undefined)}
-                className="text-xs text-gray-500 hover:text-gray-700"
+            return (
+              <div
+                key={dateStr}
+                onClick={() => setSelectedDay(date)}
+                className={`bg-white p-2 relative hover:bg-gray-50 cursor-pointer transition-colors flex flex-col items-center justify-center`}
               >
-                Clear filter
-              </button>
-            )}
-          </div>
-          
-          <div className="text-xs text-gray-500 mb-4">
-            {selectedUserId ? 'Showing activity for selected user.' : 'Showing all users activity.'}
-          </div>
-
-          {loadingCalendar ? (
-            <div className="text-center py-4 text-gray-500">Loading calendar...</div>
-          ) : (
-            <div className="grid grid-cols-7 gap-2">
-              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-                <div key={i} className="text-center text-xs font-medium text-gray-500 pb-2">
-                  {d}
-                </div>
-              ))}
-              
-              {/* Padding for first day of month */}
-              {Array.from({ length: new Date(year, month - 1, 1).getDay() }).map((_, i) => (
-                <div key={`empty-${i}`} className="h-8"></div>
-              ))}
-              
-              {daysArray.map((dateStr) => {
-                const day = parseInt(dateStr.split('-')[2]);
-                const isActive = calendarDates?.includes(dateStr);
-                
-                return (
-                  <div 
-                    key={dateStr}
-                    title={dateStr}
-                    className={`h-8 flex items-center justify-center rounded-sm text-xs cursor-default
-                      ${isActive 
-                        ? 'bg-[#52B788] text-white font-semibold' 
-                        : 'bg-gray-50 text-gray-400 border border-gray-100'
-                      }
-                    `}
-                  >
-                    {day}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          
-          <div className="mt-6 flex items-center gap-2 text-xs text-gray-600">
-            <div className="w-3 h-3 bg-[#52B788] rounded-sm"></div> Logged
-            <div className="w-3 h-3 bg-gray-50 border border-gray-200 rounded-sm ml-3"></div> Missed
-          </div>
+                <span className={`text-sm font-medium w-8 h-8 flex items-center justify-center rounded-full ${isToday ? 'bg-forest text-white' : 'text-gray-700'}`}>
+                  {format(date, 'd')}
+                </span>
+                {isActive && (
+                  <div className="mt-2 w-3 h-3 rounded-full bg-moss-green shadow-sm" title="Transactions exist" />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Transaction Slide-in Panel / Modal */}
+      {selectedDay && (
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/20" onClick={() => setSelectedDay(null)}>
+          <div 
+            className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col transform transition-transform animate-in slide-in-from-right"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900">
+                {format(selectedDay, 'MMMM d, yyyy')}
+              </h3>
+              <button 
+                onClick={() => setSelectedDay(null)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {loadingDayTransactions ? (
+                <div className="text-center text-gray-500 py-8">Loading transactions...</div>
+              ) : dayTransactionsData?.transactions.length === 0 ? (
+                <div className="text-center text-gray-500 py-8">No transactions logged for this day.</div>
+              ) : (
+                dayTransactionsData?.transactions.map((tx: any) => (
+                  <div key={tx.id} className="bg-white border border-gray-100 rounded-lg p-4 shadow-sm flex items-start justify-between">
+                    <div>
+                      <p className="font-medium text-gray-900">{tx.category.name}</p>
+                      <p className="text-sm text-gray-500">{tx.description || 'No description'}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className={`font-semibold ${tx.type === 'INCOME' ? 'text-moss-green' : 'text-deep-brown'}`}>
+                        {tx.type === 'INCOME' ? '+' : '-'}${Number(tx.amount).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

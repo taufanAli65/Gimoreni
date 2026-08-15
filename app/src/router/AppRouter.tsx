@@ -11,8 +11,7 @@ import { CalendarPage } from '../pages/admin/CalendarPage';
 import { HomePage } from '../pages/user/HomePage';
 import { QuestsPage } from '../pages/admin/QuestsPage';
 
-// Placeholder Pages
-const AdminDashboard = () => <div className="p-4">Admin Dashboard</div>;
+import { DashboardPage } from '../pages/admin/DashboardPage';
 
 export const AppRouter = () => {
   return (
@@ -23,7 +22,7 @@ export const AppRouter = () => {
         {/* Admin Routes */}
         <Route element={<AdminRoutes />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
+            <Route index element={<DashboardPage />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="misc" element={<MiscPage />} />
             <Route path="calendar" element={<CalendarPage />} />
