@@ -6,6 +6,8 @@ import { UserLayout } from '../shared/components/layout/UserLayout';
 import { LoginPage } from '../domains/auth/pages/LoginPage';
 import { UsersPage } from '../pages/admin/UsersPage';
 import { MiscPage } from '../pages/admin/MiscPage';
+import { AddPage } from '../pages/user/AddPage';
+import { CalendarPage } from '../pages/admin/CalendarPage';
 
 // Placeholder Pages
 const Home = () => <div className="p-4">User Home</div>;
@@ -23,6 +25,7 @@ export const AppRouter = () => {
             <Route index element={<AdminDashboard />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="misc" element={<MiscPage />} />
+            <Route path="calendar" element={<CalendarPage />} />
             {/* More admin routes here */}
           </Route>
         </Route>
@@ -31,6 +34,7 @@ export const AppRouter = () => {
         <Route element={<UserRoutes />}>
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Home />} />
+            <Route path="add" element={<AddPage />} />
             {/* More user routes here */}
           </Route>
         </Route>

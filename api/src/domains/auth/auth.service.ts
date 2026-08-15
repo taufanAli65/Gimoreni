@@ -42,6 +42,7 @@ export class AuthService {
       refreshToken,
       user: {
         id: user.id,
+        supabaseUserId: user.supabaseUserId,
         name: user.name,
         role: user.role,
         hasCompletedTutorial: user.hasCompletedTutorial,
@@ -85,6 +86,7 @@ export class AuthService {
 
     return {
       id: user.id,
+      supabaseUserId: user.supabaseUserId,
       name: user.name,
       role: user.role,
       hasCompletedTutorial: user.hasCompletedTutorial,

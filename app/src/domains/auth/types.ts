@@ -2,6 +2,7 @@ export type Role = 'ADMIN' | 'USER';
 
 export interface User {
   id: string;
+  supabaseUserId: string;
   name: string;
   role: Role;
   hasCompletedTutorial: boolean;

@@ -2,7 +2,7 @@
 
 **Goal**: Full transaction CRUD with date-based logging, Admin summary/calendar aggregations, and streak-log side effects. This is the app's core data entry feature.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 3
 
 ---
@@ -95,14 +95,14 @@ This pre-populates streak data for Phase 6.
 
 ## ✅ Acceptance Criteria
 
-- [ ] `POST /transactions` creates the record AND upserts `StreakLog.didLog = true`
-- [ ] USER cannot `GET /transactions?userId=<other>` (403)
-- [ ] `GET /transactions/summary` aggregates income/expense correctly per user per month
-- [ ] Receipt image upload uses `compressImage()` (≤ 500 KB) and stores URL in Supabase Storage
-- [ ] Date field stored as UTC Date (no time component); displayed in local timezone on frontend
-- [ ] Admin Calendar page marks days with at least one transaction as "active"
-- [ ] Pagination works correctly on list endpoints
-- [ ] RLS policies prevent cross-user data access
+- [x] `POST /transactions` creates the record AND upserts `StreakLog.didLog = true`
+- [x] USER cannot `GET /transactions?userId=<other>` (403)
+- [x] `GET /transactions/summary` aggregates income/expense correctly per user per month
+- [x] Receipt image upload uses `compressImage()` (≤ 500 KB) and stores URL in Supabase Storage
+- [x] Date field stored as UTC Date (no time component); displayed in local timezone on frontend
+- [x] Admin Calendar page marks days with at least one transaction as "active"
+- [x] Pagination works correctly on list endpoints
+- [x] RLS policies prevent cross-user data access
 
 ---
 
