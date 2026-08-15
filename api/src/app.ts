@@ -15,6 +15,7 @@ app.use(cookieParser());
 
 import { authRouter } from './domains/auth/auth.router';
 import { usersRouter } from './domains/users/users.router';
+import { categoriesRouter } from './domains/categories/categories.router';
 
 // Base Route
 app.get('/api/v1/health', (req, res) => {
@@ -24,6 +25,7 @@ app.get('/api/v1/health', (req, res) => {
 // Domain Routers
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/categories', categoriesRouter);
 
 // Global Error Handler
 app.use(errorHandler);

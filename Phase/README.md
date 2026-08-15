@@ -15,7 +15,7 @@ Each phase has its own markdown file with a detailed task checklist, acceptance 
 | 0 | [phase_00_foundation.md](./phase_00_foundation.md) | Monorepo scaffold, tooling, env, Prisma, Supabase | ✅ Completed |
 | 1 | [phase_01_auth.md](./phase_01_auth.md) | Authentication (JWT, login, refresh, logout, me) | ✅ Completed |
 | 2 | [phase_02_users.md](./phase_02_users.md) | User Management CRUD + balance management | ✅ Completed |
-| 3 | [phase_03_categories.md](./phase_03_categories.md) | Category Management (visibility logic) | 🔲 Not Started |
+| 3 | [phase_03_categories.md](./phase_03_categories.md) | Category Management (visibility logic) | ✅ Completed |
 | 4 | [phase_04_transactions.md](./phase_04_transactions.md) | Daily Financial Records CRUD + summary/calendar | 🔲 Not Started |
 | 5 | [phase_05_quests.md](./phase_05_quests.md) | Quest Management CRUD + Redemption flow | 🔲 Not Started |
 | 6 | [phase_06_bonuses_streaks.md](./phase_06_bonuses_streaks.md) | Bonus Management + Streak tracking + CRON logic | 🔲 Not Started |

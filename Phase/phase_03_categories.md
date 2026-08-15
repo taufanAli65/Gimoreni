@@ -2,7 +2,7 @@
 
 **Goal**: Implement category CRUD with role-based visibility filtering (ALL / ADMIN_ONLY / USER_ONLY), on both backend and frontend.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Done
 **Depends on**: Phase 2
 
 ---
