@@ -13,12 +13,15 @@ app.use(cors({ origin: env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+import { authRouter } from './domains/auth/auth.router';
+
 // Base Route
 app.get('/api/v1/health', (req, res) => {
   res.json({ success: true, data: { status: 'ok', timestamp: new Date() } });
 });
 
-// Domain Routers will be mounted here later
+// Domain Routers
+app.use('/api/v1/auth', authRouter);
 
 // Global Error Handler
 app.use(errorHandler);

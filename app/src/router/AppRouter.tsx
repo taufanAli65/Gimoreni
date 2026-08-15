@@ -3,9 +3,9 @@ import { AdminRoutes } from './AdminRoutes';
 import { UserRoutes } from './UserRoutes';
 import { AdminLayout } from '../shared/components/layout/AdminLayout';
 import { UserLayout } from '../shared/components/layout/UserLayout';
+import { LoginPage } from '../domains/auth/pages/LoginPage';
 
 // Placeholder Pages
-const Login = () => <div className="p-4">Login Page</div>;
 const Home = () => <div className="p-4">User Home</div>;
 const AdminDashboard = () => <div className="p-4">Admin Dashboard</div>;
 
@@ -13,7 +13,7 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginPage />} />
         
         {/* Admin Routes */}
         <Route element={<AdminRoutes />}>

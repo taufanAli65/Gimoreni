@@ -2,7 +2,7 @@
 
 **Goal**: Implement end-to-end authentication: login, token refresh, logout, and "get me" — both the API layer and the React auth context/hooks.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 0
 
 ---
@@ -68,16 +68,16 @@ A user can log in, receive a short-lived JWT access token + long-lived refresh c
 
 ## ✅ Acceptance Criteria
 
-- [ ] `POST /auth/login` with valid credentials returns `accessToken` + sets `refreshToken` HttpOnly cookie
-- [ ] `POST /auth/login` with invalid credentials returns `401` with error envelope
-- [ ] `POST /auth/refresh` with valid refresh cookie issues a new access token
-- [ ] `POST /auth/logout` clears the refresh cookie
-- [ ] `GET /auth/me` with valid Bearer token returns user profile
-- [ ] `GET /auth/me` without token returns `401`
-- [ ] Frontend `AuthContext` is populated on app load via `GET /auth/me`
-- [ ] Axios interceptor silently refreshes expired access token and retries original request
-- [ ] After login, ADMIN is redirected to `/admin`, USER to `/`
-- [ ] Login page uses Forest theme colors and Inter/Geist font
+- [x] `POST /auth/login` with valid credentials returns `accessToken` + sets `refreshToken` HttpOnly cookie
+- [x] `POST /auth/login` with invalid credentials returns `401` with error envelope
+- [x] `POST /auth/refresh` with valid refresh cookie issues a new access token
+- [x] `POST /auth/logout` clears the refresh cookie
+- [x] `GET /auth/me` with valid Bearer token returns user profile
+- [x] `GET /auth/me` without token returns `401`
+- [x] Frontend `AuthContext` is populated on app load via `GET /auth/me`
+- [x] Axios interceptor silently refreshes expired access token and retries original request
+- [x] After login, ADMIN is redirected to `/admin`, USER to `/`
+- [x] Login page uses Forest theme colors and Inter/Geist font
 
 ---
 
