@@ -18,6 +18,8 @@ const envSchema = z.object({
   SUPABASE_URL: z.string().url(),
   SUPABASE_ANON_KEY: z.string(),
   SUPABASE_SERVICE_ROLE_KEY: z.string(),
+  ADMIN_EMAIL: z.string().email().default('admin@gimoreni.com'),
+  ADMIN_PASSWORD: z.string().min(6).default('admin123'),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
