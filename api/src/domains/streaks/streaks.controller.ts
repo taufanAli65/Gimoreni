@@ -16,7 +16,7 @@ export class StreaksController {
 
   async getUserStreak(req: Request, res: Response, next: NextFunction) {
     try {
-      const data = await streaksService.getStreakData(req.params.userId);
+      const data = await streaksService.getStreakData(req.params.userId as string);
       res.json(success(data));
     } catch (error) {
       next(error);

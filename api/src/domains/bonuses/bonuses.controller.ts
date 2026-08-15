@@ -21,7 +21,7 @@ export class BonusesController {
 
   async getById(req: Request, res: Response, next: NextFunction) {
     try {
-      const bonus = await bonusesService.getById(req.params.id);
+      const bonus = await bonusesService.getById(req.params.id as string);
       res.json(success(bonus));
     } catch (error) {
       next(error);
@@ -49,7 +49,7 @@ export class BonusesController {
         throw new AppError(400, 'BAD_REQUEST', parsedBody.error.message);
       }
 
-      const bonus = await bonusesService.update(req.params.id, parsedBody.data.body);
+      const bonus = await bonusesService.update(req.params.id as string, parsedBody.data.body);
       res.json(success(bonus));
     } catch (error) {
       next(error);
@@ -58,7 +58,7 @@ export class BonusesController {
 
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      await bonusesService.delete(req.params.id);
+      await bonusesService.delete(req.params.id as string);
       res.json(success({ message: 'Bonus deleted successfully' }));
     } catch (error) {
       next(error);
@@ -67,7 +67,7 @@ export class BonusesController {
 
   async apply(req: Request, res: Response, next: NextFunction) {
     try {
-      const bonus = await bonusesService.applyBonus(req.params.id);
+      const bonus = await bonusesService.applyBonus(req.params.id as string);
       res.json(success(bonus));
     } catch (error) {
       next(error);

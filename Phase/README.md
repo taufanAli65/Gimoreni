@@ -19,7 +19,7 @@ Each phase has its own markdown file with a detailed task checklist, acceptance 
 | 4 | [phase_04_transactions.md](./phase_04_transactions.md) | Daily Financial Records CRUD + summary/calendar | ✅ Completed |
 | 5 | [phase_05_quests.md](./phase_05_quests.md) | Quest Management CRUD + Redemption flow | ✅ Completed |
 | 6 | [phase_06_bonuses_streaks.md](./phase_06_bonuses_streaks.md) | Bonus Management + Streak tracking + CRON logic | ✅ Completed |
-| 7 | [phase_07_notifications.md](./phase_07_notifications.md) | Notification system (in-app, interactive) | 🔲 Not Started |
+| 7 | [phase_07_notifications.md](./phase_07_notifications.md) | Notification system (in-app, interactive) | ✅ Completed |
 | 8 | [phase_08_admin_ui.md](./phase_08_admin_ui.md) | Admin UI (Dashboard, Calendar, Quests, Users, Misc) | 🔲 Not Started |
 | 9 | [phase_09_user_ui.md](./phase_09_user_ui.md) | User UI (Home, Add, Settings, Tutorial) | 🔲 Not Started |
 | 10 | [phase_10_polish_and_nfr.md](./phase_10_polish_and_nfr.md) | Polish, NFRs, RLS audit, image policy, rate limiting | 🔲 Not Started |

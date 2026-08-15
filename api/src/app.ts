@@ -21,6 +21,7 @@ import { questsRouter } from './domains/quests/quests.router';
 import { redemptionsRouter } from './domains/redemptions/redemptions.router';
 import { bonusesRouter } from './domains/bonuses/bonuses.router';
 import { streaksRouter } from './domains/streaks/streaks.router';
+import { notificationsRouter } from './domains/notifications/notifications.router';
 
 // Base Route
 app.get('/api/v1/health', (req, res) => {
@@ -36,6 +37,7 @@ app.use('/api/v1/quests', questsRouter);
 app.use('/api/v1/redemptions', redemptionsRouter);
 app.use('/api/v1/bonuses', bonusesRouter);
 app.use('/api/v1/streaks', streaksRouter);
+app.use('/api/v1/notifications', notificationsRouter);
 
 // Global Error Handler
 app.use(errorHandler);

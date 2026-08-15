@@ -2,7 +2,7 @@
 
 **Goal**: Build the full notification pipeline: backend CRUD, frontend notification bell, and the custom interactive notification component for action-required alerts.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 6 (notifications are created by bonuses, streaks, quest approvals)
 
 ---
@@ -76,14 +76,14 @@ Backend `notifications` domain (all 5 layers) + frontend `NotificationBell` + `I
 
 ## ✅ Acceptance Criteria
 
-- [ ] `GET /notifications` returns notifications in unread-first order
-- [ ] `PATCH /notifications/read-all` marks ALL own notifications as read in one query
-- [ ] `requiresAction = true` notifications render as an `InteractiveNotification` modal on the frontend
-- [ ] `requiresAction = false` notifications render as items in the `NotificationDropdown`
-- [ ] `NotificationBell` shows an unread count badge (hidden when count = 0)
-- [ ] Bell is present in both `AdminLayout` and `UserLayout`
-- [ ] Sonner toast fires on mutation success/error (no DB write)
-- [ ] RLS: Users cannot read or modify other users' notifications
+- [x] `GET /notifications` returns notifications in unread-first order
+- [x] `PATCH /notifications/read-all` marks ALL own notifications as read in one query
+- [x] `requiresAction = true` notifications render as an `InteractiveNotification` modal on the frontend
+- [x] `requiresAction = false` notifications render as items in the `NotificationDropdown`
+- [x] `NotificationBell` shows an unread count badge (hidden when count = 0)
+- [x] Bell is present in both `AdminLayout` and `UserLayout`
+- [x] Sonner toast fires on mutation success/error (no DB write)
+- [x] RLS: Users cannot read or modify other users' notifications
 
 ---
 
