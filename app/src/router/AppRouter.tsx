@@ -4,6 +4,7 @@ import { UserRoutes } from './UserRoutes';
 import { AdminLayout } from '../shared/components/layout/AdminLayout';
 import { UserLayout } from '../shared/components/layout/UserLayout';
 import { LoginPage } from '../domains/auth/pages/LoginPage';
+import { UsersPage } from '../pages/admin/UsersPage';
 
 // Placeholder Pages
 const Home = () => <div className="p-4">User Home</div>;
@@ -19,6 +20,7 @@ export const AppRouter = () => {
         <Route element={<AdminRoutes />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="users" element={<UsersPage />} />
             {/* More admin routes here */}
           </Route>
         </Route>

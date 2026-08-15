@@ -2,7 +2,7 @@
 
 **Goal**: Full CRUD for users (Admin only) + self-profile update + balance/allowance management.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 1
 
 ---
@@ -63,14 +63,14 @@ Backend `users` domain (all 5 layers) + minimal frontend stubs for the Admin Use
 
 ## ✅ Acceptance Criteria
 
-- [ ] `GET /users` returns paginated list with `meta`
-- [ ] `POST /users` creates Supabase Auth user AND Prisma `User` in one transaction
-- [ ] `DELETE /users/:id` sets `isActive = false`, does not hard-delete
-- [ ] `PATCH /users/me` only allows updating `name`, `avatarUrl`, `hasCompletedTutorial` (no role/balance changes)
-- [ ] `PATCH /users/:id/balance` validates that amount is a positive number
-- [ ] RLS: Users cannot read other users' rows via direct DB access
-- [ ] Admin Users page renders a table with name, email, role, balance, allowance, status
-- [ ] Avatar uploads go through `compressImage()` before `PATCH /users/me`
+- [x] `GET /users` returns paginated list with `meta`
+- [x] `POST /users` creates Supabase Auth user AND Prisma `User` in one transaction
+- [x] `DELETE /users/:id` sets `isActive = false`, does not hard-delete
+- [x] `PATCH /users/me` only allows updating `name`, `avatarUrl`, `hasCompletedTutorial` (no role/balance changes)
+- [x] `PATCH /users/:id/balance` validates that amount is a positive number
+- [x] RLS: Users cannot read other users' rows via direct DB access
+- [x] Admin Users page renders a table with name, email, role, balance, allowance, status
+- [x] Avatar uploads go through `compressImage()` before `PATCH /users/me`
 
 ---
 

@@ -7,3 +7,5 @@ build/
 coverage/
 .turbo/
 *.log
+
+api/prisma/seed.js

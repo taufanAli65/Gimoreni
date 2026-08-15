@@ -1,6 +1,14 @@
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../../../shared/hooks/useAuth';
 import { LoginForm } from '../components/LoginForm';
 
 export const LoginPage = () => {
+  const { user } = useAuth();
+
+  if (user) {
+    return <Navigate to={user.role === 'ADMIN' ? '/admin' : '/'} replace />;
+  }
+
   return (
     <div className="min-h-screen bg-[#F5F5F0] flex flex-col items-center justify-center p-4" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
