@@ -8,9 +8,10 @@ import { UsersPage } from '../pages/admin/UsersPage';
 import { MiscPage } from '../pages/admin/MiscPage';
 import { AddPage } from '../pages/user/AddPage';
 import { CalendarPage } from '../pages/admin/CalendarPage';
+import { HomePage } from '../pages/user/HomePage';
+import { QuestsPage } from '../pages/admin/QuestsPage';
 
 // Placeholder Pages
-const Home = () => <div className="p-4">User Home</div>;
 const AdminDashboard = () => <div className="p-4">Admin Dashboard</div>;
 
 export const AppRouter = () => {
@@ -26,6 +27,7 @@ export const AppRouter = () => {
             <Route path="users" element={<UsersPage />} />
             <Route path="misc" element={<MiscPage />} />
             <Route path="calendar" element={<CalendarPage />} />
+            <Route path="quests" element={<QuestsPage />} />
             {/* More admin routes here */}
           </Route>
         </Route>
@@ -33,7 +35,7 @@ export const AppRouter = () => {
         {/* User Routes */}
         <Route element={<UserRoutes />}>
           <Route path="/" element={<UserLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<HomePage />} />
             <Route path="add" element={<AddPage />} />
             {/* More user routes here */}
           </Route>
@@ -44,3 +46,4 @@ export const AppRouter = () => {
     </BrowserRouter>
   );
 };
+

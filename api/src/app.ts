@@ -17,6 +17,10 @@ import { authRouter } from './domains/auth/auth.router';
 import { usersRouter } from './domains/users/users.router';
 import { categoriesRouter } from './domains/categories/categories.router';
 import { transactionsRouter } from './domains/transactions/transactions.router';
+import { questsRouter } from './domains/quests/quests.router';
+import { redemptionsRouter } from './domains/redemptions/redemptions.router';
+import { bonusesRouter } from './domains/bonuses/bonuses.router';
+import { streaksRouter } from './domains/streaks/streaks.router';
 
 // Base Route
 app.get('/api/v1/health', (req, res) => {
@@ -28,6 +32,10 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/categories', categoriesRouter);
 app.use('/api/v1/transactions', transactionsRouter);
+app.use('/api/v1/quests', questsRouter);
+app.use('/api/v1/redemptions', redemptionsRouter);
+app.use('/api/v1/bonuses', bonusesRouter);
+app.use('/api/v1/streaks', streaksRouter);
 
 // Global Error Handler
 app.use(errorHandler);

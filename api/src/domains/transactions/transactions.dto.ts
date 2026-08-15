@@ -22,8 +22,8 @@ export const TransactionFilterDto = z.object({
   endDate: z.string().optional(),
   type: z.nativeEnum(TransactionType).optional(),
   categoryId: z.string().optional(),
-  page: z.string().regex(/^\d+$/).transform(Number).default('1'),
-  limit: z.string().regex(/^\d+$/).transform(Number).default('20'),
+  page: z.string().regex(/^\d+$/).transform(Number).default('1' as any),
+  limit: z.string().regex(/^\d+$/).transform(Number).default('20' as any),
 });
 
 export type TransactionFilterInput = z.infer<typeof TransactionFilterDto>;

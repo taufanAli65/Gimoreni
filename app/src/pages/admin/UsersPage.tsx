@@ -3,7 +3,7 @@ import { useGetUsers, useCreateUser, useDeleteUser, useUpdateBalance } from '../
 import type { CreateUserPayload } from '../../domains/users/types';
 
 export const UsersPage = () => {
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const { data, isLoading, error } = useGetUsers(page, 20);
   const createUser = useCreateUser();
   const deleteUser = useDeleteUser();

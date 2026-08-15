@@ -2,7 +2,7 @@
 
 **Goal**: Implement the Bonus Management system (Admin-issued monetary rewards) and the full Streak evaluation logic including daily CRON-triggered checks, streak resets, and milestone tracking.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 5 (StreakLog is pre-populated by transactions in Phase 4)
 
 ---
@@ -119,15 +119,15 @@ Create a Notification for each: "Don't forget to log your finances today! 🌿"
 
 ## ✅ Acceptance Criteria
 
-- [ ] Creating a bonus with `isApplied = true` is not allowed via API
-- [ ] Applying a bonus correctly increments `User.balance` and `User.totalPoints`
-- [ ] Applying an already-applied bonus returns `409 Conflict`
-- [ ] `/streaks/check` correctly increments streak for users with `didLog = true`
-- [ ] `/streaks/check` resets `currentStreak = 0` for users with `didLog = false` past 23:00 UTC
-- [ ] `longestStreak` is only updated when current streak exceeds it
-- [ ] `/streaks/remind` creates one notification per user who hasn't logged today
-- [ ] Streak counter displays with flame icon on User Home
-- [ ] Bonus section in Admin Misc page shows all bonuses with apply button
+- [x] Creating a bonus with `isApplied = true` is not allowed via API
+- [x] Applying a bonus correctly increments `User.balance` and `User.totalPoints`
+- [x] Applying an already-applied bonus returns `409 Conflict`
+- [x] `/streaks/check` correctly increments streak for users with `didLog = true`
+- [x] `/streaks/check` resets `currentStreak = 0` for users with `didLog = false` past 23:00 UTC
+- [x] `longestStreak` is only updated when current streak exceeds it
+- [x] `/streaks/remind` creates one notification per user who hasn't logged today
+- [x] Streak counter displays with flame icon on User Home
+- [x] Bonus section in Admin Misc page shows all bonuses with apply button
 
 ---
 

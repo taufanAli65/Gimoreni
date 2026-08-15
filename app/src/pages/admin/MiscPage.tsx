@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useCategories } from '../../domains/categories/hooks/useCategories';
 import { useCreateCategory, useUpdateCategory, useDeleteCategory } from '../../domains/categories/hooks/useCategoryMutations';
 import { CategoryForm } from '../../domains/categories/components/CategoryForm';
 import { CategoryBadge } from '../../domains/categories/components/CategoryBadge';
 import type { Category } from '../../domains/categories/types';
+import { useBonuses } from '../../domains/bonuses/hooks/useBonuses';
+import { BonusForm } from '../../domains/bonuses/components/BonusForm';
+import { BonusCard } from '../../domains/bonuses/components/BonusCard';
 
 export const MiscPage = () => {
   const { data: categories, isLoading, error } = useCategories();
+  const { data: bonuses, isLoading: bonusesLoading } = useBonuses();
   const createCategory = useCreateCategory();
   const updateCategory = useUpdateCategory();
   const deleteCategory = useDeleteCategory();
@@ -128,6 +132,32 @@ export const MiscPage = () => {
               )}
             </tbody>
           </table>
+        </div>
+      </div>
+
+      {/* Bonuses Section */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <div className="xl:col-span-1">
+          <BonusForm />
+        </div>
+        <div className="xl:col-span-2 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-900 px-1">Recent Bonuses</h2>
+          {bonusesLoading ? (
+            <div className="animate-pulse space-y-4">
+              {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-100 rounded-lg"></div>)}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {bonuses?.length === 0 && (
+                <div className="p-8 text-center text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-200">
+                  No bonuses issued yet.
+                </div>
+              )}
+              {bonuses?.map(bonus => (
+                <BonusCard key={bonus.id} bonus={bonus} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

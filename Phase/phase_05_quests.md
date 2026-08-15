@@ -2,7 +2,7 @@
 
 **Goal**: Implement the full quest lifecycle: Admin creates/publishes quests → User views and submits proof → Admin approves/rejects → Points are awarded. This is the core gamification loop.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 **Depends on**: Phase 4
 
 ---
@@ -88,14 +88,14 @@ Backend `quests` domain + `redemptions` domain (all 5 layers each) + frontend qu
 
 ## ✅ Acceptance Criteria
 
-- [ ] A quest starts as `DRAFT`; it is invisible to Users until Admin publishes it
-- [ ] USER cannot submit more than one redemption per quest (`409 Conflict`)
-- [ ] Proof image is compressed (≤ 500 KB) client-side before upload to `redemption-proofs` bucket
-- [ ] Approving a redemption atomically awards points and creates a Notification
-- [ ] Rejecting a redemption stores the `rejectionNote`
-- [ ] `GET /quests` as USER never returns DRAFT or EXPIRED quests
-- [ ] Quest widget on User Home shows active quest with point reward and deadline
-- [ ] Admin Quests page lists all quests with status indicators and pending redemption count
+- [x] A quest starts as `DRAFT`; it is invisible to Users until Admin publishes it
+- [x] USER cannot submit more than one redemption per quest (`409 Conflict`)
+- [x] Proof image is compressed (≤ 500 KB) client-side before upload to `redemption-proofs` bucket
+- [x] Approving a redemption atomically awards points and creates a Notification
+- [x] Rejecting a redemption stores the `rejectionNote`
+- [x] `GET /quests` as USER never returns DRAFT or EXPIRED quests
+- [x] Quest widget on User Home shows active quest with point reward and deadline
+- [x] Admin Quests page lists all quests with status indicators and pending redemption count
 
 ---
 

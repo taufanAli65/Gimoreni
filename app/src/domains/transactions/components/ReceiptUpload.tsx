@@ -36,7 +36,7 @@ export const ReceiptUpload = ({ onUploadSuccess, onUploadError }: ReceiptUploadP
       const filePath = user?.supabaseUserId ? `${user.supabaseUserId}/${fileName}` : fileName;
 
       // Ensure the 'receipts' bucket is created in Supabase!
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('receipts')
         .upload(filePath, compressedFile, {
           cacheControl: '3600',

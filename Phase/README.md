@@ -16,9 +16,9 @@ Each phase has its own markdown file with a detailed task checklist, acceptance 
 | 1 | [phase_01_auth.md](./phase_01_auth.md) | Authentication (JWT, login, refresh, logout, me) | ✅ Completed |
 | 2 | [phase_02_users.md](./phase_02_users.md) | User Management CRUD + balance management | ✅ Completed |
 | 3 | [phase_03_categories.md](./phase_03_categories.md) | Category Management (visibility logic) | ✅ Completed |
-| 4 | [phase_04_transactions.md](./phase_04_transactions.md) | Daily Financial Records CRUD + summary/calendar | 🔲 Not Started |
-| 5 | [phase_05_quests.md](./phase_05_quests.md) | Quest Management CRUD + Redemption flow | 🔲 Not Started |
-| 6 | [phase_06_bonuses_streaks.md](./phase_06_bonuses_streaks.md) | Bonus Management + Streak tracking + CRON logic | 🔲 Not Started |
+| 4 | [phase_04_transactions.md](./phase_04_transactions.md) | Daily Financial Records CRUD + summary/calendar | ✅ Completed |
+| 5 | [phase_05_quests.md](./phase_05_quests.md) | Quest Management CRUD + Redemption flow | ✅ Completed |
+| 6 | [phase_06_bonuses_streaks.md](./phase_06_bonuses_streaks.md) | Bonus Management + Streak tracking + CRON logic | ✅ Completed |
 | 7 | [phase_07_notifications.md](./phase_07_notifications.md) | Notification system (in-app, interactive) | 🔲 Not Started |
 | 8 | [phase_08_admin_ui.md](./phase_08_admin_ui.md) | Admin UI (Dashboard, Calendar, Quests, Users, Misc) | 🔲 Not Started |
 | 9 | [phase_09_user_ui.md](./phase_09_user_ui.md) | User UI (Home, Add, Settings, Tutorial) | 🔲 Not Started |
