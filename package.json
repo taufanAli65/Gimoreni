@@ -1,0 +1,14 @@
+{
+  "name": "gimoreni",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=api",
+    "dev:app": "npm run dev --workspace=app",
+    "dev": "npm run dev:api & npm run dev:app"
+  }
+}
