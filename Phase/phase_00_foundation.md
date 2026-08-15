@@ -2,7 +2,7 @@
 
 **Goal**: Scaffold the entire monorepo from scratch, wire up all tooling, connect Supabase/Prisma, and validate the environment before any feature code is written.
 
-**Status**: 🔲 Not Started
+**Status**: ✅ Completed
 
 ---
 
@@ -22,7 +22,7 @@ This phase produces a working, runnable skeleton: both API and App servers start
 - `tsconfig.base.json` — shared strict TS config
 
 ### `api/`
-- `package.json` — dependencies: express, prisma, @prisma/client, zod, jsonwebtoken, cookie-parser, cors, express-rate-limit, bcryptjs, dotenv
+- `package.json` — dependencies: express, prisma, @prisma/client, zod, jsonwebtoken, cookie-parser, cors, express-rate-limit, bcryptjs, dotenv, tsx
 - `tsconfig.json` — extends base, paths, outDir
 - `src/app.ts` — Express app factory (rate limit → cors → json → routes → errorHandler)
 - `src/index.ts` — entry point (import app, listen on PORT)
@@ -50,7 +50,7 @@ This phase produces a working, runnable skeleton: both API and App servers start
 - `src/router/UserRoutes.tsx` — role guard → `/*`
 - `src/shared/lib/api.ts` — Axios instance with interceptors
 - `src/shared/lib/imageCompression.ts` — `compressImage()` wrapper
-- `src/shared/hooks/useAuth.ts` — AuthContext consumer hook
+- `src/shared/hooks/useAuth.tsx` — AuthContext consumer hook
 - `src/shared/components/layout/AdminLayout.tsx`
 - `src/shared/components/layout/UserLayout.tsx`
 
@@ -58,14 +58,14 @@ This phase produces a working, runnable skeleton: both API and App servers start
 
 ## ✅ Acceptance Criteria
 
-- [ ] `npm run dev` in `api/` starts Express on port 3001 without errors
-- [ ] `npm run dev` in `app/` starts Vite dev server on port 5173
-- [ ] `npx prisma migrate dev` runs successfully and all 8 tables exist in Supabase
-- [ ] `src/config/env.ts` throws a descriptive error if any required env var is missing
-- [ ] Rate limiting middleware is the FIRST middleware registered in `app.ts`
-- [ ] Axios interceptors handle 401 → token refresh flow
-- [ ] Forest theme colors are defined as CSS vars and Tailwind custom tokens
-- [ ] `.env.example` has all keys with placeholder values
+- [x] `npm run dev` in `api/` starts Express on port 3001 without errors
+- [x] `npm run dev` in `app/` starts Vite dev server on port 5173
+- [x] `npx prisma migrate dev` runs successfully and all 8 tables exist in Supabase
+- [x] `src/config/env.ts` throws a descriptive error if any required env var is missing
+- [x] Rate limiting middleware is the FIRST middleware registered in `app.ts`
+- [x] Axios interceptors handle 401 → token refresh flow
+- [x] Forest theme colors are defined as CSS vars and Tailwind custom tokens
+- [x] `.env.example` has all keys with placeholder values
 
 ---
 
